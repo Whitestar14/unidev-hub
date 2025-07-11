@@ -1,5 +1,8 @@
 name: Update Contributors in README
 
+permissions:
+  contents: write
+  
 on:
   push:
     paths:
