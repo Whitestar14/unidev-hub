@@ -17,7 +17,7 @@ resources/     → Categorized lists of useful dev tools & links
 ## 👤 Contributors
 
 <!-- CONTRIBUTORS_START -->
-(auto-generated)
+- [Sijibomi](./portfolio/sijibomi.md)
 <!-- CONTRIBUTORS_END -->
 
 > The list above updates automatically based on markdown files in `/portfolio/`.
