@@ -54,11 +54,14 @@ Stick to trusted, relevant, non-paywalled links.
 
 ## 🔁 Steps to Contribute
 
-1. **Fork** this repository.
+1. **Fork** this repository (or create a new branch from `main` if you have write access).
 2. **Create** your markdown profile in `/portfolio/`.
 3. *(Optional)* Add useful resource links in `/resources/`.
-4. **Commit** and push your changes.
-5. **Open a Pull Request** with a clear title and description.
+4. **Commit** and push your changes to your branch (not directly to `main`).
+5. **Open a Pull Request** to `main` with a clear title and description.
+6. **Wait for review and approval.** Your PR will be reviewed by a maintainer before merging.
+
+> **Note:** Direct pushes to `main` are disabled. All changes must go through a Pull Request for review and approval.
 
 That’s it! The GitHub Action will auto-update the contributor list in `README.md` based on your file.
 
