@@ -12,18 +12,30 @@ const files = fs
   .filter((f) => f.endsWith(".md"))
   .sort((a, b) => a.localeCompare(b));
 
+
 // Validate file names (optional: skip files not matching a pattern)
-// Example: Only allow files with at least one letter
 const validFiles = files.filter((f) => /[a-zA-Z]/.test(f.replace(".md", "")));
 
+// Helper to extract full name and portfolio from a markdown file
+function extractContributorInfo(filePath, fileName) {
+  const content = fs.readFileSync(filePath, "utf-8");
+  // Extract full name from first line starting with '# '
+  const nameMatch = content.match(/^#\s+(.+)/m);
+  const fullName = nameMatch ? nameMatch[1].trim() : fileName.replace(/\.md$/, "");
+  // Extract portfolio link from a line like [https://...](https://...)
+  const portfolioMatch = content.match(/\[(https?:\/\/[^\]]+)\]\((https?:\/\/[^\)]+)\)/);
+  const portfolio = portfolioMatch ? portfolioMatch[1] : null;
+  return { fullName, portfolio };
+}
+
 const links = validFiles.map((f) => {
-  // Split on - and _ and capitalize each part
-  const name = f
-    .replace(/\.md$/, "")
-    .split(/[-_]/)
-    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
-    .join(" ");
-  return `- [${name}](./portfolio/${f})`;
+  const filePath = path.join(portfolioPath, f);
+  const { fullName, portfolio } = extractContributorInfo(filePath, f);
+  let display = `- [${fullName}](./portfolio/${f})`;
+  if (portfolio) {
+    display += ` — [Portfolio](${portfolio})`;
+  }
+  return display;
 });
 
 const content = fs.readFileSync(readmePath, "utf-8");
